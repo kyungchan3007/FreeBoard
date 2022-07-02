@@ -18,15 +18,17 @@ export default function BoardCommentListUIItem(
   props: IBoardCommentListUIItemProps
 ) {
   const router = useRouter();
+
   const [isEdit, setIsEdit] = useState(false);
+
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
   const [myPassword, setMyPassword] = useState("");
 
-  const [deleteBoardComment] =
-    useMutation<
-      Pick<IMutation, "deleteBoardComment">,
-      IMutationDeleteBoardCommentArgs
-    >(DELETE_BOARD_COMMENT);
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
 
   const onClickUpdate = () => {
     setIsEdit(true);
@@ -46,7 +48,7 @@ export default function BoardCommentListUIItem(
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       Modal.error({ content: error.message });
     }
   };
